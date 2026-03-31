@@ -1,18 +1,7 @@
 services:
-  # 后端 API 服务
-  - type: web
-    name: smart-meal-planner-api
-    runtime: node
-    rootDir: backend
-    buildCommand: npm install
-    startCommand: npm start
-    plan: free
-
-  # 前端服务（使用 web 类型 + 静态文件服务）
-  - type: web
-    name: smart-meal-planner-frontend
-    runtime: static
+  - type: static
+    name: smart-meal-planner
     rootDir: frontend
     buildCommand: npm install && npm run build
-    startCommand: npx serve -s dist -l 10000
+    publishPath: dist
     plan: free
