@@ -1,8 +1,26 @@
 services:
+  # 后端 API 服务
   - type: web
     name: smart-meal-planner-api
-    env: node
+    runtime: node
     rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+
+  # 前端静态服务
+  - type: static
+    name: smart-meal-planner-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: VITE_API_URL
+        value: https://smart-meal-planner-api.onrender.com
