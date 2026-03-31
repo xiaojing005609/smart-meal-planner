@@ -375,6 +375,7 @@ button {
   color: #fff;
   padding: 8px 12px;
   cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 button.secondary {
@@ -384,6 +385,27 @@ button.secondary {
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:focus-visible {
+  outline: none;
+}
+
+.btn-replace {
+  min-width: 80px;
+}
+
+.btn-replace-active {
+  background: #1d4ed8;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6);
 }
 
 .grid {

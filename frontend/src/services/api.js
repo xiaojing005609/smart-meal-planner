@@ -21,8 +21,13 @@ export async function generateMultipleMeals(profile, count = 3) {
   return data.plans;
 }
 
-export async function replaceMeal(profile, currentPlan, mealType) {
-  const { data } = await api.post("/meal/replace", { profile, currentPlan, mealType });
+export async function replaceMeal(profile, currentPlan, mealType, extraExcludeIds = []) {
+  const { data } = await api.post("/meal/replace", {
+    profile,
+    currentPlan,
+    mealType,
+    extraExcludeIds
+  });
   return data;
 }
 

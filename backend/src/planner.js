@@ -150,10 +150,10 @@ function generateMultiplePlans(profile, count = 3) {
   return { plans };
 }
 
-function replaceMeal(profile, currentPlan, mealType) {
+function replaceMeal(profile, currentPlan, mealType, extraExcludeIds = []) {
   const current = currentPlan?.[mealType];
   if (!current) return { error: "缺少当前餐次数据。" };
-  const replacement = pickDish(mealType, profile, [current.id]);
+  const replacement = pickDish(mealType, profile, [current.id, ...extraExcludeIds]);
   if (!replacement) return { error: "没有可替换的菜品了，请调整忌口条件。" };
 
   const nextPlan = { ...currentPlan, [mealType]: replacement };

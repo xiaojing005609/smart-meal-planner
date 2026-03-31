@@ -51,8 +51,8 @@ app.post("/api/meal/generate-multiple", (req, res) => {
 });
 
 app.post("/api/meal/replace", (req, res) => {
-  const { profile = {}, currentPlan = {}, mealType } = req.body || {};
-  const result = replaceMeal(profile, currentPlan, mealType);
+  const { profile = {}, currentPlan = {}, mealType, extraExcludeIds = [] } = req.body || {};
+  const result = replaceMeal(profile, currentPlan, mealType, extraExcludeIds);
   if (result.error) {
     return res.status(400).json(result);
   }

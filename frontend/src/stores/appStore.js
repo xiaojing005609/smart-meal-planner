@@ -103,6 +103,13 @@ export const useAppStore = defineStore("app", {
     dislikedDishIds: readJSON(DISLIKED_KEY, []),
     history: readJSON(HISTORY_KEY, []),
     loading: false,
+    generating: false,
+    replacingMealType: "",
+    replaceHistoryByMeal: {
+      breakfast: [],
+      lunch: [],
+      dinner: []
+    },
     error: "",
     strategyMessage: ""
   }),
@@ -116,6 +123,13 @@ export const useAppStore = defineStore("app", {
     }
   },
   actions: {
+    resetReplaceHistory() {
+      this.replaceHistoryByMeal = {
+        breakfast: [],
+        lunch: [],
+        dinner: []
+      };
+    },
     saveProfile(profile) {
       this.profile = { ...profile };
       localStorage.setItem(PROFILE_KEY, JSON.stringify(this.profile));
@@ -125,6 +139,7 @@ export const useAppStore = defineStore("app", {
     },
     async generateTodayPlan() {
       this.loading = true;
+      this.generating = true;
       this.error = "";
       try {
         const plans = await generateMultipleMeals(
@@ -147,9 +162,11 @@ export const useAppStore = defineStore("app", {
             recentDishIds: extractRecentDishIds(this.history)
           }));
         this.shoppingList = await fetchShoppingList(this.currentPlan.plan);
+        this.resetReplaceHistory();
       } catch (err) {
         this.error = err?.response?.data?.error || "生成失败，请稍后重试。";
       } finally {
+        this.generating = false;
         this.loading = false;
       }
     },
@@ -157,13 +174,18 @@ export const useAppStore = defineStore("app", {
       if (index < 0 || index >= this.planOptions.length) return;
       this.selectedPlanIndex = index;
       this.currentPlan = this.planOptions[index];
+      this.resetReplaceHistory();
       this.updateShoppingList();
     },
     async replaceMealType(mealType) {
       if (!this.currentPlan?.plan) return;
+      if (this.replacingMealType) return;
       this.loading = true;
+      this.replacingMealType = mealType;
       this.error = "";
       try {
+        const beforeDishId = this.currentPlan.plan?.[mealType]?.id;
+        const mealHistory = this.replaceHistoryByMeal[mealType] || [];
         const replaced = await replaceMeal(
           {
             ...this.profile,
@@ -172,21 +194,30 @@ export const useAppStore = defineStore("app", {
             recentDishIds: extractRecentDishIds(this.history)
           },
           this.currentPlan.plan,
-          mealType
+          mealType,
+          mealHistory
         );
+        const nextDishId = replaced.plan?.[mealType]?.id;
+        if (beforeDishId && nextDishId && beforeDishId === nextDishId) {
+          this.error = "已没有可替换的新菜品，可先重新生成。";
+          return;
+        }
         this.currentPlan = replaced;
         if (this.planOptions.length) {
           this.planOptions[this.selectedPlanIndex] = replaced;
         }
+        this.replaceHistoryByMeal[mealType] = [...mealHistory, nextDishId].filter(Boolean);
         this.shoppingList = await fetchShoppingList(this.currentPlan.plan);
       } catch (err) {
         this.error = err?.response?.data?.error || "替换失败，请稍后重试。";
       } finally {
+        this.replacingMealType = "";
         this.loading = false;
       }
     },
     async generateTodayPlanFromFavorites() {
       this.loading = true;
+      this.generating = true;
       this.error = "";
       try {
         this.currentPlan = await generateFromFavorites({
@@ -198,9 +229,11 @@ export const useAppStore = defineStore("app", {
         this.planOptions = [this.currentPlan];
         this.selectedPlanIndex = 0;
         this.shoppingList = await fetchShoppingList(this.currentPlan.plan);
+        this.resetReplaceHistory();
       } catch (err) {
         this.error = err?.response?.data?.error || "收藏生成失败，请稍后重试。";
       } finally {
+        this.generating = false;
         this.loading = false;
       }
     },
