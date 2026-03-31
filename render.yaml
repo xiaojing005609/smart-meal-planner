@@ -1,7 +1,8 @@
 services:
-  - type: static
-    name: smart-meal-planner
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    publishPath: dist
+  - type: web
+    name: smart-meal-planner-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node src/server.js
     plan: free
