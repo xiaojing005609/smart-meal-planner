@@ -7,24 +7,12 @@ services:
     buildCommand: npm install
     startCommand: npm start
     plan: free
-    envVars:
-      - key: NODE_VERSION
-        value: 18
 
-  # 前端静态服务
-  - type: static
+  # 前端服务（使用 web 类型 + 静态文件服务）
+  - type: web
     name: smart-meal-planner-frontend
     runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishPath: dist
+    startCommand: npx serve -s dist -l 10000
     plan: free
-    envVars:
-      - key: NODE_VERSION
-        value: 18
-      - key: VITE_API_URL
-        value: https://smart-meal-planner-api.onrender.com
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
