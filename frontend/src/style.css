@@ -408,6 +408,20 @@ button:focus-visible {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6);
 }
 
+.meal-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.meal-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;

@@ -60,82 +60,88 @@ onMounted(() => {
         <h3>早餐：{{ store.currentPlan.plan.breakfast.name }}</h3>
         <p>食材：{{ store.currentPlan.plan.breakfast.ingredients.join("、") }}</p>
         <p>做法：{{ store.currentPlan.plan.breakfast.recipeBrief }}</p>
-        <button
-          class="secondary"
-          @click="store.toggleFavorite(store.currentPlan.plan.breakfast)"
-          :disabled="store.generating || store.replacingMealType === 'breakfast'"
-        >
-          {{ store.isFavorite(store.currentPlan.plan.breakfast.id) ? "取消收藏" : "收藏菜品" }}
-        </button>
-        <button
-          class="secondary"
-          @click="store.dislikeDishForToday(store.currentPlan.plan.breakfast.id); store.replaceMealType('breakfast')"
-          :disabled="store.generating || store.replacingMealType === 'breakfast'"
-        >
-          今天不想吃
-        </button>
-        <button
-          class="secondary btn-replace"
-          :class="{ 'btn-replace-active': store.replacingMealType === 'breakfast' }"
-          @click="store.replaceMealType('breakfast')"
-          :disabled="store.generating || store.replacingMealType === 'breakfast'"
-        >
-          {{ store.replacingMealType === "breakfast" ? "替换中..." : "替换早餐" }}
-        </button>
+        <div class="meal-actions">
+          <button
+            class="secondary"
+            @click="store.toggleFavorite(store.currentPlan.plan.breakfast)"
+            :disabled="store.generating || store.replacingMealType === 'breakfast'"
+          >
+            {{ store.isFavorite(store.currentPlan.plan.breakfast.id) ? "取消收藏" : "收藏菜品" }}
+          </button>
+          <button
+            class="secondary"
+            @click="store.dislikeDishForToday(store.currentPlan.plan.breakfast.id); store.replaceMealType('breakfast')"
+            :disabled="store.generating || store.replacingMealType === 'breakfast'"
+          >
+            今天不想吃
+          </button>
+          <button
+            class="secondary btn-replace"
+            :class="{ 'btn-replace-active': store.replacingMealType === 'breakfast' }"
+            @click="store.replaceMealType('breakfast')"
+            :disabled="store.generating || store.replacingMealType === 'breakfast'"
+          >
+            {{ store.replacingMealType === "breakfast" ? "替换中..." : "替换早餐" }}
+          </button>
+        </div>
       </article>
       <article class="card">
         <h3>午餐：{{ store.currentPlan.plan.lunch.name }}</h3>
         <p>食材：{{ store.currentPlan.plan.lunch.ingredients.join("、") }}</p>
         <p>做法：{{ store.currentPlan.plan.lunch.recipeBrief }}</p>
-        <button
-          class="secondary"
-          @click="store.toggleFavorite(store.currentPlan.plan.lunch)"
-          :disabled="store.generating || store.replacingMealType === 'lunch'"
-        >
-          {{ store.isFavorite(store.currentPlan.plan.lunch.id) ? "取消收藏" : "收藏菜品" }}
-        </button>
-        <button
-          class="secondary"
-          @click="store.dislikeDishForToday(store.currentPlan.plan.lunch.id); store.replaceMealType('lunch')"
-          :disabled="store.generating || store.replacingMealType === 'lunch'"
-        >
-          今天不想吃
-        </button>
-        <button
-          class="secondary btn-replace"
-          :class="{ 'btn-replace-active': store.replacingMealType === 'lunch' }"
-          @click="store.replaceMealType('lunch')"
-          :disabled="store.generating || store.replacingMealType === 'lunch'"
-        >
-          {{ store.replacingMealType === "lunch" ? "替换中..." : "替换午餐" }}
-        </button>
+        <div class="meal-actions">
+          <button
+            class="secondary"
+            @click="store.toggleFavorite(store.currentPlan.plan.lunch)"
+            :disabled="store.generating || store.replacingMealType === 'lunch'"
+          >
+            {{ store.isFavorite(store.currentPlan.plan.lunch.id) ? "取消收藏" : "收藏菜品" }}
+          </button>
+          <button
+            class="secondary"
+            @click="store.dislikeDishForToday(store.currentPlan.plan.lunch.id); store.replaceMealType('lunch')"
+            :disabled="store.generating || store.replacingMealType === 'lunch'"
+          >
+            今天不想吃
+          </button>
+          <button
+            class="secondary btn-replace"
+            :class="{ 'btn-replace-active': store.replacingMealType === 'lunch' }"
+            @click="store.replaceMealType('lunch')"
+            :disabled="store.generating || store.replacingMealType === 'lunch'"
+          >
+            {{ store.replacingMealType === "lunch" ? "替换中..." : "替换午餐" }}
+          </button>
+        </div>
       </article>
       <article class="card">
         <h3>晚餐：{{ store.currentPlan.plan.dinner.name }}</h3>
         <p>食材：{{ store.currentPlan.plan.dinner.ingredients.join("、") }}</p>
         <p>做法：{{ store.currentPlan.plan.dinner.recipeBrief }}</p>
-        <button
-          class="secondary"
-          @click="store.toggleFavorite(store.currentPlan.plan.dinner)"
-          :disabled="store.generating || store.replacingMealType === 'dinner'"
-        >
-          {{ store.isFavorite(store.currentPlan.plan.dinner.id) ? "取消收藏" : "收藏菜品" }}
-        </button>
-        <button
-          class="secondary"
-          @click="store.dislikeDishForToday(store.currentPlan.plan.dinner.id); store.replaceMealType('dinner')"
-          :disabled="store.generating || store.replacingMealType === 'dinner'"
-        >
-          今天不想吃
-        </button>
-        <button
-          class="secondary btn-replace"
-          :class="{ 'btn-replace-active': store.replacingMealType === 'dinner' }"
-          @click="store.replaceMealType('dinner')"
-          :disabled="store.generating || store.replacingMealType === 'dinner'"
-        >
-          {{ store.replacingMealType === "dinner" ? "替换中..." : "替换晚餐" }}
-        </button>
+        <div class="meal-actions">
+          <button
+            class="secondary"
+            @click="store.toggleFavorite(store.currentPlan.plan.dinner)"
+            :disabled="store.generating || store.replacingMealType === 'dinner'"
+          >
+            {{ store.isFavorite(store.currentPlan.plan.dinner.id) ? "取消收藏" : "收藏菜品" }}
+          </button>
+          <button
+            class="secondary"
+            @click="store.dislikeDishForToday(store.currentPlan.plan.dinner.id); store.replaceMealType('dinner')"
+            :disabled="store.generating || store.replacingMealType === 'dinner'"
+          >
+            今天不想吃
+          </button>
+          <button
+            class="secondary btn-replace"
+            :class="{ 'btn-replace-active': store.replacingMealType === 'dinner' }"
+            @click="store.replaceMealType('dinner')"
+            :disabled="store.generating || store.replacingMealType === 'dinner'"
+          >
+            {{ store.replacingMealType === "dinner" ? "替换中..." : "替换晚餐" }}
+          </button>
+        </div>
       </article>
     </div>
 
