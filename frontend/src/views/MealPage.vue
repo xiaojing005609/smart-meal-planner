@@ -64,14 +64,14 @@ onMounted(() => {
           <button
             class="secondary"
             @click="store.toggleFavorite(store.currentPlan.plan.breakfast)"
-            :disabled="store.generating || store.replacingMealType === 'breakfast'"
+            :disabled="store.generating"
           >
             {{ store.isFavorite(store.currentPlan.plan.breakfast.id) ? "取消收藏" : "收藏菜品" }}
           </button>
           <button
             class="secondary"
             @click="store.dislikeDishForToday(store.currentPlan.plan.breakfast.id); store.replaceMealType('breakfast')"
-            :disabled="store.generating || store.replacingMealType === 'breakfast'"
+            :disabled="store.generating"
           >
             今天不想吃
           </button>
@@ -93,14 +93,14 @@ onMounted(() => {
           <button
             class="secondary"
             @click="store.toggleFavorite(store.currentPlan.plan.lunch)"
-            :disabled="store.generating || store.replacingMealType === 'lunch'"
+            :disabled="store.generating"
           >
             {{ store.isFavorite(store.currentPlan.plan.lunch.id) ? "取消收藏" : "收藏菜品" }}
           </button>
           <button
             class="secondary"
             @click="store.dislikeDishForToday(store.currentPlan.plan.lunch.id); store.replaceMealType('lunch')"
-            :disabled="store.generating || store.replacingMealType === 'lunch'"
+            :disabled="store.generating"
           >
             今天不想吃
           </button>
@@ -122,14 +122,14 @@ onMounted(() => {
           <button
             class="secondary"
             @click="store.toggleFavorite(store.currentPlan.plan.dinner)"
-            :disabled="store.generating || store.replacingMealType === 'dinner'"
+            :disabled="store.generating"
           >
             {{ store.isFavorite(store.currentPlan.plan.dinner.id) ? "取消收藏" : "收藏菜品" }}
           </button>
           <button
             class="secondary"
             @click="store.dislikeDishForToday(store.currentPlan.plan.dinner.id); store.replaceMealType('dinner')"
-            :disabled="store.generating || store.replacingMealType === 'dinner'"
+            :disabled="store.generating"
           >
             今天不想吃
           </button>
