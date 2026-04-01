@@ -334,13 +334,13 @@ body {
 }
 
 .top-nav a {
-  color: #334155;
   text-decoration: none;
   font-weight: 600;
 }
 
 .top-nav a.router-link-active {
-  color: #2563eb;
+  filter: brightness(1.08);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85);
 }
 
 h1 {
@@ -374,35 +374,176 @@ p {
   margin-bottom: 6px;
 }
 
-button {
+button,
+a.btn-fruit {
   border: 0;
-  border-radius: 8px;
-  background: #2563eb;
+  border-radius: 999px;
   color: #fff;
-  padding: 8px 12px;
+  padding: 8px 14px;
   cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: filter 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  background: linear-gradient(145deg, #64748b, #475569);
+}
+
+a.btn-fruit {
+  box-sizing: border-box;
 }
 
 button.secondary {
-  background: #334155;
+  background: linear-gradient(145deg, #64748b, #475569);
 }
 
-button:disabled {
-  opacity: 0.6;
+button:disabled,
+a.btn-fruit[aria-disabled="true"] {
+  opacity: 0.58;
   cursor: not-allowed;
+  filter: grayscale(0.15);
 }
 
-button:hover:not(:disabled) {
+button:hover:not(:disabled),
+a.btn-fruit:hover {
   transform: translateY(-1px);
+  filter: brightness(1.06);
 }
 
-button:active:not(:disabled) {
+button:active:not(:disabled),
+a.btn-fruit:active {
   transform: translateY(0);
+  filter: brightness(0.98);
 }
 
-button:focus-visible {
-  outline: none;
+button:focus-visible,
+a.btn-fruit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* 水果主题按钮（emoji + 暖色渐变） */
+.btn-fruit::before {
+  margin-right: 2px;
+  font-size: 1.05em;
+  line-height: 1;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.2));
+}
+
+.fruit-apple::before {
+  content: "\1f34e";
+}
+.fruit-banana::before {
+  content: "\1f34c";
+}
+.fruit-watermelon::before {
+  content: "\1f349";
+}
+.fruit-orange::before {
+  content: "\1f34a";
+}
+.fruit-grape::before {
+  content: "\1f347";
+}
+.fruit-cherry::before {
+  content: "\1f352";
+}
+.fruit-kiwi::before {
+  content: "\1f95d";
+}
+.fruit-strawberry::before {
+  content: "\1f353";
+}
+.fruit-mango::before {
+  content: "\1f96d";
+}
+.fruit-peach::before {
+  content: "\1f351";
+}
+.fruit-lemon::before {
+  content: "\1f34b";
+}
+.fruit-pineapple::before {
+  content: "\1f34d";
+}
+.fruit-pear::before {
+  content: "\1f350";
+}
+.fruit-coconut::before {
+  content: "\1f965";
+}
+.fruit-melon::before {
+  content: "\1f348";
+}
+.fruit-blueberry::before {
+  content: "🫐";
+}
+
+.fruit-apple {
+  background: linear-gradient(145deg, #ef4444, #b91c1c);
+}
+.fruit-banana {
+  background: linear-gradient(145deg, #fde047, #ca8a04);
+  color: #422006;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.fruit-watermelon {
+  background: linear-gradient(145deg, #4ade80, #f472b6 55%, #ec4899);
+}
+.fruit-orange {
+  background: linear-gradient(145deg, #fb923c, #ea580c);
+}
+.fruit-grape {
+  background: linear-gradient(145deg, #c084fc, #7e22ce);
+}
+.fruit-cherry {
+  background: linear-gradient(145deg, #f87171, #991b1b);
+}
+.fruit-kiwi {
+  background: linear-gradient(145deg, #a3e635, #4d7c0f);
+  color: #1a2e05;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.fruit-strawberry {
+  background: linear-gradient(145deg, #fb7185, #be123c);
+}
+.fruit-mango {
+  background: linear-gradient(145deg, #fcd34d, #ea580c);
+  color: #422006;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.fruit-peach {
+  background: linear-gradient(145deg, #fdba74, #f43f5e);
+}
+.fruit-lemon {
+  background: linear-gradient(145deg, #fef08a, #ca8a04);
+  color: #422006;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.fruit-pineapple {
+  background: linear-gradient(145deg, #facc15, #b45309);
+  color: #422006;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.fruit-pear {
+  background: linear-gradient(145deg, #d9f99d, #65a30d);
+  color: #1a2e05;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.fruit-coconut {
+  background: linear-gradient(145deg, #a8a29e, #57534e);
+}
+.fruit-melon {
+  background: linear-gradient(145deg, #86efac, #16a34a);
+  color: #052e16;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.fruit-blueberry {
+  background: linear-gradient(145deg, #93c5fd, #1d4ed8);
 }
 
 .btn-replace {
@@ -410,8 +551,8 @@ button:focus-visible {
 }
 
 .btn-replace-active {
-  background: #1d4ed8;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6);
+  filter: brightness(1.08);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
 .meal-actions {

@@ -64,8 +64,8 @@ function save() {
       </label>
       <label>偏好（用顿号分隔）<input v-model="form.preferencesText" placeholder="家常、清淡、低油" /></label>
       <label>忌口/过敏（用顿号分隔）<input v-model="form.avoidText" placeholder="海鲜、花生" /></label>
-      <button @click="save">保存设置</button>
-      <button class="secondary" @click="store.resetWeeklyStrategy()">
+      <button type="button" class="btn-fruit fruit-apple" @click="save">保存设置</button>
+      <button type="button" class="btn-fruit fruit-banana" @click="store.resetWeeklyStrategy()">
         每周一键重置饮食策略
       </button>
       <p v-if="store.strategyMessage" class="tip-text">{{ store.strategyMessage }}</p>
