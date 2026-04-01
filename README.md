@@ -30,6 +30,19 @@ npm run dev --prefix frontend
 5. 确认健康检查：  
    `https://你的后端域名/api/health`
 
+### 3.1.1 防休眠保活（Render Cron）
+
+Render 免费服务在无请求时会休眠。项目已在 `render.yaml` 增加保活定时任务：
+
+- Cron 服务名：`smart-meal-planner-keepalive`
+- 执行频率：每 10 分钟一次（`*/10 * * * *`）
+- 执行命令：`npm run ping:health`
+- 目标地址：环境变量 `PING_URL`（默认指向 `/api/health`）
+
+如果你的 Render 服务域名不是 `smart-meal-planner-api.onrender.com`，请在 Render 后台把 Cron 的 `PING_URL` 改成你自己的地址，例如：
+
+`https://你的后端域名/api/health`
+
 ### 3.2 前端部署到 Vercel
 
 1. 打开 [Vercel Dashboard](https://vercel.com/dashboard) 并登录  

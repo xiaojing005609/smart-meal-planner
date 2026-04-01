@@ -5,7 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "dev": "node src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "ping:health": "node src/ping-health.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

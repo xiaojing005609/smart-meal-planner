@@ -6,3 +6,14 @@ services:
     buildCommand: npm install
     startCommand: node src/server.js
     plan: free
+  - type: cron
+    name: smart-meal-planner-keepalive
+    runtime: node
+    rootDir: backend
+    schedule: "*/10 * * * *"
+    buildCommand: npm install
+    startCommand: npm run ping:health
+    plan: free
+    envVars:
+      - key: PING_URL
+        value: https://smart-meal-planner-api.onrender.com/api/health
