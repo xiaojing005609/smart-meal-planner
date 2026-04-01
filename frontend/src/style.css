@@ -298,17 +298,13 @@ code {
 /* Meal planner overrides */
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  background-color: #faf4ec;
-  background-image:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(250, 244, 236, 0.96)),
-    url("https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1600&q=80");
-  background-size:
-    100% 100%,
-    cover;
-  background-position:
-    center top,
-    center top;
+  background-color: #fdf6e8;
+  background-image: url("/meal-bg-frame.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   color: #1a1a1a;
 }
